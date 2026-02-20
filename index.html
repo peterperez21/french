@@ -3,149 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
     <title>Maîtrise des Verbes Français</title>
-    <style>
-      :root {
-        --primary: #2c3e50;
-        --success: #27ae60;
-        --error: #e74c3c;
-        --bg: #f4f7f6;
-        --accent: #3498db;
-      }
-      body {
-        font-family: "Segoe UI", sans-serif;
-        background: var(--bg);
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-      }
-      .container {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 700px;
-      }
-      .dots-container {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin: 10px 0;
-      }
-      .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: 2px solid #ddd;
-        background-color: transparent;
-        transition: all 0.3s ease;
-      }
-      .dot.filled {
-        background-color: var(--success);
-        border-color: var(--success);
-      }
-      .progress-container {
-        width: 100%;
-        background-color: #eee;
-        border-radius: 10px;
-        margin: 20px 0;
-        height: 12px;
-        overflow: hidden;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .progress-bar {
-        width: 0%;
-        height: 100%;
-        background-color: var(--accent);
-        transition: width 0.4s ease;
-      }
-      .config-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
-        margin-bottom: 20px;
-        background: #f9f9f9;
-        padding: 15px;
-        border-radius: 8px;
-      }
-      .hidden {
-        display: none;
-      }
-      .btn {
-        background: var(--primary);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 6px;
-        cursor: pointer;
-        width: 100%;
-        font-size: 1rem;
-      }
-      .btn:hover {
-        background: #34495e;
-      }
-      #drill {
-        text-align: center;
-      }
-      #answer-input {
-        width: 80%;
-        padding: 12px;
-        font-size: 1.2rem;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        margin: 20px 0;
-      }
-      .feedback {
-        font-weight: bold;
-        margin: 15px 0;
-        min-height: 1.2rem;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
-      th,
-      td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-      }
-      .current-row {
-        background: #e8f4fd;
-        font-weight: bold;
-        color: var(--accent);
-      }
-      /* Responsive adjustments */
-      @media (max-width: 600px) {
-        body {
-          padding: 10px;
-        }
-
-        .grid {
-          grid-template-columns: 1fr; /* Stack checkboxes vertically */
-        }
-
-        #sentence {
-          font-size: 1.2rem; /* Make text readable on small screens */
-        }
-
-        .btn {
-          width: 100%; /* Full width buttons for easy thumb-tapping */
-          padding: 15px;
-        }
-
-        table {
-          font-size: 0.9rem; /* Slightly smaller text for the table */
-        }
-
-        .dots-container {
-          gap: 5px;
-        }
-      }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -241,6 +101,38 @@
             <strong>Tiers</strong>
             <div id="tier-checkboxes">Loading tiers...</div>
           </div>
+          <div class="setup-column">
+            <h3>Thème</h3>
+            <label class="theme-toggle-wrapper" for="toggle">
+              <div id="theme-toggle" class="toggle">
+                <div class="icons">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+                    />
+                  </svg>
+                </div>
+                <input id="toggle" type="checkbox" onclick="toggleDarkMode()" />
+              </div>
+            </label>
+          </div>
         </div>
         <button class="btn" onclick="startDrill()">
           Lancer l'entraînement
@@ -258,7 +150,7 @@
         >
           Sentence goes here...
         </p>
-        <div id="mastery-dots" class="dots-container"></div>
+        <div id="mastery-container" class="mastery-dots"></div>
         <input
           type="text"
           id="answer-input"
@@ -294,279 +186,6 @@
         </div>
       </div>
     </div>
-
-    <script>
-      let globalData = {};
-      let currentQ = null;
-      let deck = [];
-      let initialDeckSize = 0;
-      let isCorrectionMode = false;
-      let isMastered = false;
-
-      // Load config and generate tiers
-      async function loadConfig() {
-        try {
-          const response = await fetch("verbs.json");
-          globalData = await response.json();
-
-          const tierContainer = document.getElementById("tier-checkboxes");
-          if (tierContainer) {
-            tierContainer.innerHTML = "";
-            for (let tierKey in globalData.tiers) {
-              const label = document.createElement("label");
-              label.style.display = "block";
-              label.innerHTML = `<input type="checkbox" class="tier-opt" value="${tierKey}" checked> ${globalData.tiers[tierKey].label}`;
-              tierContainer.appendChild(label);
-            }
-          }
-        } catch (e) {
-          console.error("Critical Error: verbs.json not found or invalid.", e);
-        }
-      }
-
-      window.onload = loadConfig;
-
-      function startDrill() {
-        const tenses = Array.from(
-          document.querySelectorAll(".tense-opt:checked"),
-        ).map((cb) => cb.value);
-        const groups = Array.from(
-          document.querySelectorAll(".group-opt:checked"),
-        ).map((cb) => cb.value);
-        const tiers = Array.from(
-          document.querySelectorAll(".tier-opt:checked"),
-        ).map((cb) => cb.value);
-
-        // Filter the pool
-        const pool = globalData.questions.filter(
-          (q) =>
-            tenses.includes(q.t) &&
-            groups.includes(q.g) &&
-            tiers.includes(q.tier),
-        );
-
-        if (pool.length === 0)
-          return alert("Aucune question trouvée pour cette sélection.");
-
-        deck = pool.sort(() => Math.random() - 0.5);
-        initialDeckSize = deck.length;
-
-        document.getElementById("setup").classList.add("hidden");
-        document.getElementById("drill").classList.remove("hidden");
-
-        updateProgressBar();
-        nextQuestion();
-      }
-
-      function resetCurrentMastery() {
-        if (!currentQ) return;
-
-        // Confirm with the user so they don't click it by accident
-        const confirmReset = confirm(
-          `Voulez-vous réinitialiser la maîtrise pour "${currentQ.v}" (${currentQ.p}) ?`,
-        );
-
-        if (confirmReset) {
-          const storageKey = `mastery_${currentQ.v}_${currentQ.t}_${currentQ.p}`;
-          localStorage.removeItem(storageKey);
-
-          // Update the UI immediately so the dots disappear
-          updateMasteryUI();
-
-          // Visual feedback
-          document.getElementById("feedback").innerText =
-            "Maîtrise réinitialisée.";
-          document.getElementById("feedback").style.color = "gray";
-        }
-      }
-
-      function nextQuestion() {
-        if (deck.length === 0) {
-          alert("Session terminée !");
-          return location.reload();
-        }
-
-        // Reset flags and button text
-        isCorrectionMode = false;
-        document.getElementById("check-btn").innerText = "Vérifier";
-
-        currentQ = deck.pop();
-
-        // Check Mastery
-        const storageKey = `mastery_${currentQ.v}_${currentQ.t}_${currentQ.p}`;
-        const score = parseInt(localStorage.getItem(storageKey)) || 0;
-        const inputField = document.getElementById("answer-input");
-
-        isMastered = score >= 5;
-
-        // Standard UI Reset
-        document.getElementById("sentence").innerText = currentQ.s;
-        document.getElementById("verb-info").innerText =
-          `${currentQ.v} (${currentQ.t}, ${currentQ.p})`;
-        document.getElementById("feedback").innerText = "";
-        document.getElementById("table-container").classList.add("hidden");
-
-        if (isMastered) {
-          // SPEED MODE: Auto-fill and prep for immediate next
-          const lookupPronoun = currentQ.p === "j'" ? "je" : currentQ.p;
-          const correct =
-            globalData.tiers[currentQ.tier].verbs[currentQ.v][currentQ.t][
-              lookupPronoun
-            ];
-
-          inputField.value = correct;
-          document.getElementById("feedback").innerText =
-            "Maîtrisé ! (Entrée pour continuer)";
-          document.getElementById("feedback").style.color = "var(--success)";
-
-          document.getElementById("check-btn").classList.add("hidden");
-          document.getElementById("next-btn").classList.remove("hidden");
-        } else {
-          // STANDARD MODE: Empty input and show verify button
-          inputField.value = "";
-          document.getElementById("check-btn").classList.remove("hidden");
-          document.getElementById("next-btn").classList.add("hidden");
-        }
-
-        updateProgressBar();
-        updateMasteryUI();
-        inputField.focus();
-      }
-
-      function checkAnswer() {
-        try {
-          const inputField = document.getElementById("answer-input");
-          const input = inputField.value.trim().toLowerCase();
-
-          // Handle j' vs je lookup
-          const lookupPronoun = currentQ.p === "j'" ? "je" : currentQ.p;
-          const correct =
-            globalData.tiers[currentQ.tier].verbs[currentQ.v][currentQ.t][
-              lookupPronoun
-            ].toLowerCase();
-          const storageKey = `mastery_${currentQ.v}_${currentQ.t}_${currentQ.p}`;
-          const feedback = document.getElementById("feedback");
-
-          if (input === correct) {
-            feedback.innerText = isCorrectionMode
-              ? "Bien corrigé !"
-              : "Correct !";
-            feedback.style.color = "var(--success)";
-
-            // Only reward if not in correction mode
-            if (!isCorrectionMode) {
-              let score = parseInt(localStorage.getItem(storageKey)) || 0;
-              if (score < 5) localStorage.setItem(storageKey, score + 1);
-            }
-
-            document.getElementById("check-btn").classList.add("hidden");
-            document.getElementById("next-btn").classList.remove("hidden");
-            isCorrectionMode = false;
-          } else {
-            feedback.innerText = `Incorrect. C'était : ${correct}. Tapez la réponse pour continuer.`;
-            feedback.style.color = "var(--error)";
-
-            // PENALTY: Reset to zero
-            localStorage.setItem(storageKey, 0);
-
-            inputField.value = "";
-            inputField.focus();
-            isCorrectionMode = true;
-            document.getElementById("check-btn").innerText = "Corriger";
-          }
-
-          updateMasteryUI();
-          showTable();
-        } catch (err) {
-          console.error("Check Answer failed:", err);
-        }
-      }
-
-      function updateMasteryUI() {
-        const container = document.getElementById("mastery-dots");
-        if (!container || !currentQ) return;
-        container.innerHTML = "";
-        const storageKey = `mastery_${currentQ.v}_${currentQ.t}_${currentQ.p}`;
-        const score = parseInt(localStorage.getItem(storageKey)) || 0;
-
-        for (let i = 1; i <= 5; i++) {
-          const dot = document.createElement("div");
-          dot.className = i <= score ? "dot filled" : "dot";
-          container.appendChild(dot);
-        }
-      }
-
-      function updateProgressBar() {
-        const bar = document.getElementById("progress-bar");
-        if (!bar) return;
-        const progress =
-          ((initialDeckSize - deck.length) / initialDeckSize) * 100;
-        bar.style.width = progress + "%";
-      }
-
-      function showTable() {
-        const body = document.getElementById("table-body");
-        const container = document.getElementById("table-container");
-        if (!body || !container) return;
-
-        body.innerHTML = "";
-        const conjSet =
-          globalData.tiers[currentQ.tier].verbs[currentQ.v][currentQ.t];
-
-        // Define the grouped rows we want to display
-        const displayGroups = [
-          { label: "je / j'", keys: ["je", "j'"] },
-          { label: "tu", keys: ["tu"] },
-          { label: "il / elle / on", keys: ["il", "elle", "on"] },
-          { label: "nous", keys: ["nous"] },
-          { label: "vous", keys: ["vous"] },
-          { label: "ils / elles", keys: ["ils", "elles"] },
-        ];
-
-        displayGroups.forEach((group) => {
-          // Find which key exists in JSON, specifically checking for je if j' is requested
-          const activeKey = group.keys.find(
-            (k) => conjSet[k] || (k === "j'" && conjSet["je"]),
-          );
-
-          if (activeKey) {
-            const row = document.createElement("tr");
-
-            // Highlight row if the current question's pronoun is in this group
-            if (group.keys.includes(currentQ.p)) {
-              row.className = "current-row";
-            }
-
-            // Use 'je' value for 'j'' if necessary
-            const displayValue =
-              activeKey === "j'" && !conjSet["j'"]
-                ? conjSet["je"]
-                : conjSet[activeKey];
-
-            row.innerHTML = `<td>${group.label}</td><td>${displayValue}</td>`;
-            body.appendChild(row);
-          }
-        });
-
-        container.classList.remove("hidden");
-      }
-
-      document
-        .getElementById("answer-input")
-        .addEventListener("keypress", (e) => {
-          if (e.key === "Enter") {
-            const checkBtnHidden = document
-              .getElementById("check-btn")
-              .classList.contains("hidden");
-
-            // If mastered OR we've already successfully checked, move to next
-            if (isMastered || checkBtnHidden) {
-              nextQuestion();
-            } else {
-              checkAnswer();
-            }
-          }
-        });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

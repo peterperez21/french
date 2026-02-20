@@ -6,7 +6,7 @@
   },
   "tiers": {
     "tier_1_essential": {
-      "label": "Essential 10 (Auxiliary/Modal)",
+      "label": "Le Top 10",
       "verbs": {
         "Aller": {
           "id": 1,
@@ -551,7 +551,7 @@
       }
     },
     "tier_2_high_frequency": {
-      "label": "Top 100 High-Frequency",
+      "label": "Le Top Cent",
       "verbs": {
         "Acheter": {
           "id": 11,

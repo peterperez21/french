@@ -1,0 +1,267 @@
+/* 1. VARIABLES & THEMES */
+:root {
+  --bg-page: #f0f2f5;
+  --bg-container: #ffffff;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --accent: #3498db;
+  --primary: #2c3e50;
+  --success: #28a745;
+  --error: #dc3545;
+  --border: #dddddd;
+  --transition: 0.3s ease;
+}
+
+body.dark-mode {
+  --bg-page: #000000;
+  --bg-container: #1a1a1a;
+  --text-main: #e0e0e0;
+  --text-muted: #aaaaaa;
+  --accent: #4dabf7;
+  --primary: #34495e;
+  --success: #81c784;
+  --error: #e57373;
+  --border: #333333;
+}
+
+/* 2. CORE LAYOUT */
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--bg-page) !important;
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+  transition: background-color var(--transition);
+}
+
+.container {
+  background-color: var(--bg-container) !important;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  transition: background-color var(--transition);
+}
+
+/* 3. COMPONENTS */
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  background-color: var(--bg-container); /* Linked to theme */
+  color: var(--text-main);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+}
+
+#answer-input {
+  width: 80%;
+  padding: 12px;
+  font-size: 1.2rem;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+#drill {
+  color: var(--text-main); /* Forces the whole drill area to use theme text */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This centers all children horizontally */
+  justify-content: center;
+}
+
+.verb-display {
+  color: var(--accent); /* This uses the bright blue we picked */
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sentence-display {
+  color: var(--text-main); /* This uses #e0e0e0 in dark mode */
+  font-size: 1.4rem;
+  margin: 20px 0;
+}
+
+.tense-indicator {
+  color: var(
+    --text-muted
+  ); /* Softer gray so it doesn't compete with the question */
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* 4. PROGRESS & FEEDBACK */
+.mastery-dots {
+  display: flex; /* Makes dots sit in a row */
+  justify-content: center; /* Centers them under the question */
+  gap: 8px; /* Adds space between dots */
+  margin: 15px 0; /* Adds space above/below the dot row */
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background-color: transparent;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.dot.filled {
+  background-color: var(--success);
+  border-color: var(--success);
+}
+
+/* 5. TABLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: var(--text-main);
+}
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+}
+
+/* 6. DARK MODE TOGGLE (The specific switch) */
+.theme-toggle-wrapper {
+  display: inline-block;
+  margin-top: 10px;
+}
+.toggle {
+  height: 34px;
+  width: 65px;
+  background: #ccc;
+  border-radius: 40px;
+  position: relative;
+  cursor: pointer;
+}
+body.dark-mode .toggle {
+  background: var(--accent);
+}
+.toggle::before {
+  content: "";
+  display: block;
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body.dark-mode .toggle::before {
+  transform: translateX(31px);
+}
+
+.toggle .icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px; /* Adjust horizontal spacing */
+  position: absolute; /* Locks icons behind the sliding dot */
+  width: 100%;
+  box-sizing: border-box;
+  pointer-events: none; /* Allows clicks to pass through to the checkbox */
+}
+
+.toggle .icons svg {
+  fill: #ffffffcb; /* Nice yellow/gold for visibility */
+  width: 16px;
+  height: 16px;
+  z-index: 1;
+  display: block;
+}
+
+/* Ensure the checkbox input is the top-most layer so it's clickable */
+.toggle input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* 7. RESPONSIVE */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .btn {
+    padding: 15px;
+  }
+}
+.hidden {
+  display: none !important;
+}
+
+#sentence {
+  color: var(--text-main) !important;
+  font-size: 1.4rem;
+  margin: 20px 0;
+  line-height: 1.6;
+  text-align: center;
+}
+
+#verb-info {
+  color: var(--accent) !important;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  width: 100%; /* Ensures it takes full width to respect text-align */
+}
+
+/* Ensure the input box also matches the theme */
+#answer-input {
+  display: block; /* Needed to make margin: auto work */
+  margin: 20px auto; /* Centers the box and adds space above/below */
+  width: 80%;
+  max-width: 400px; /* Prevents it from getting too wide on tablets */
+  padding: 12px;
+  font-size: 1.2rem;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  text-align: center; /* Centers the text YOU type inside the box */
+}
+
+.feedback {
+  font-weight: bold;
+  margin: 15px 0;
+  min-height: 1.2rem;
+  width: 100%;
+  text-align: center;
+}
